@@ -1,0 +1,134 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--header-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-icon {
+  width: 28px;
+  height: 28px;
+  background-color: var(--hn-orange);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: var(--radius-sm);
+  user-select: none;
+}
+
+.header-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: baseline;
+}
+
+.powered-by {
+  font-size: 0.55em;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  margin-left: 0.5rem;
+  letter-spacing: normal;
+}
+
+.header-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--hn-orange);
+}
+
+.nav-link.active {
+  color: var(--hn-orange);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto; /* Push to right if nav is hidden */
+}
+
+/* Need some margin left for nav so actions isn't entirely right */
+.header-nav {
+  margin-right: auto;
+  margin-left: 2rem;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.mobile-menu-btn {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .mobile-menu-btn {
+    display: flex;
+    margin-left: auto;
+    margin-right: 0.5rem;
+  }
+  .header-actions {
+    margin-left: 0;
+  }
+  .header-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--surface-color);
+    flex-direction: column;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+  }
+  .header-nav.mobile-open {
+    display: flex;
+  }
+}

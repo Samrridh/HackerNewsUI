@@ -1,0 +1,136 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: 5rem;
+  padding-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    display: none; /* Hide sidebar on mobile to keep it minimalist */
+  }
+}
+
+.sidebar-widget {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Search */
+.search-widget {
+  padding: 0.75rem;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--hover-bg);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.search-bar:focus-within {
+  box-shadow: 0 0 0 2px var(--hn-orange);
+  background-color: var(--surface-color);
+}
+
+.search-icon {
+  color: var(--text-tertiary);
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  width: 100%;
+}
+
+.search-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Titles */
+.widget-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.widget-icon {
+  color: var(--hn-orange);
+}
+
+/* Tags */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.topic-tag {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background-color: var(--hover-bg);
+  padding: 0.3rem 0.6rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.topic-tag:hover {
+  color: var(--hn-orange);
+  border-color: var(--hn-orange);
+  background-color: var(--surface-color);
+}
+
+/* Help List */
+.help-list {
+  list-style: none;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.help-list li {
+  position: relative;
+  padding-left: 1rem;
+  line-height: 1.4;
+}
+
+.help-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--hn-orange);
+}
+
+.help-link {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--hn-orange);
+  font-weight: 500;
+}
+
+.help-link:hover {
+  text-decoration: underline;
+}

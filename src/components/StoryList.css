@@ -1,0 +1,33 @@
+.main-content {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.stories-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.load-more-btn {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--surface-color);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-lg);
+  color: var(--hn-orange);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.load-more-btn:hover {
+  background-color: var(--hn-orange);
+  border-style: solid;
+  border-color: var(--hn-orange);
+  color: white;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
