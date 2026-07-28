@@ -90,7 +90,12 @@ button {
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+  background: linear-gradient(
+    90deg,
+    var(--hover-bg) 25%,
+    var(--border-color) 50%,
+    var(--hover-bg) 75%
+  );
   background-size: 200% 100%;
   animation: skeletonLoading 1.5s infinite;
   border-radius: var(--radius-sm);
