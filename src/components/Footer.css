@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
   font-size: 0.85rem;
   color: var(--text-secondary);
@@ -30,4 +31,37 @@
 .footer-logo-link:hover {
   color: var(--hn-orange);
   border-color: var(--hn-orange);
+}
+
+.footer-weaveit-logo {
+  height: 14px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .footer-weaveit-logo {
+  filter: invert(1);
+}
+
+.footer-sep {
+  color: var(--text-tertiary);
+}
+
+.footer-about-link {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.footer-about-link:hover {
+  color: var(--hn-orange);
+}
+
+.footer-honesty {
+  margin: 0.65rem 0 0;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+  padding: 0 1rem;
 }

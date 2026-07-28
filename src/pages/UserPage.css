@@ -1,0 +1,236 @@
+.user-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.user-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.user-back-link:hover {
+  color: var(--hn-orange);
+}
+
+.user-header {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.35rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.user-identity {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 0.85rem;
+}
+
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: var(--hover-bg);
+  color: var(--hn-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.user-name {
+  font-size: 1.35rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.user-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.user-stats span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.user-about {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--text-primary);
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-color);
+  overflow-wrap: anywhere;
+}
+
+.user-about.hn-html p {
+  margin: 0 0 0.65rem;
+}
+
+.user-about.hn-html p:last-child {
+  margin-bottom: 0;
+}
+
+.user-about.hn-html a {
+  color: var(--hn-orange);
+  text-decoration: underline;
+}
+
+.user-hn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--hn-orange);
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--hover-bg);
+}
+
+.user-hn-link:hover {
+  border-color: var(--hn-orange);
+  background: var(--surface-color);
+}
+
+.user-submissions {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.2rem 1.35rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.user-section-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.9rem;
+  color: var(--text-primary);
+}
+
+.user-section-count {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+}
+
+.user-empty {
+  font-size: 0.9rem;
+  color: var(--text-tertiary);
+}
+
+.user-submission-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.user-submission {
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.user-submission:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.user-submission-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+}
+
+.user-submission-type {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+  background: var(--hover-bg);
+  border-radius: 999px;
+  padding: 0.15rem 0.45rem;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.user-submission-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+.user-submission-title:hover {
+  color: var(--hn-orange);
+}
+
+.user-submission-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.35rem;
+  margin-left: 3.4rem;
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+}
+
+.user-submission-meta span,
+.user-submission-meta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.user-submission-meta a {
+  color: var(--hn-orange);
+}
+
+.user-subs-loading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.user-skeleton-header {
+  height: 9rem;
+  border-radius: var(--radius-lg);
+}
+
+.user-skeleton-body {
+  height: 12rem;
+  border-radius: var(--radius-lg);
+}
+
+.user-skeleton-row {
+  height: 3rem;
+  width: 100%;
+  border-radius: var(--radius-md);
+}

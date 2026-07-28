@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# LLM / agent context (see https://llmstxt.org/)
+# https://hn.weaveit.app/llms.txt
+
+Sitemap: https://hn.weaveit.app/sitemap.xml

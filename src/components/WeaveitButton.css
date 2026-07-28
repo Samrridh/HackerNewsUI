@@ -1,4 +1,4 @@
-.weavedb-btn {
+.weaveit-btn {
   position: fixed;
   bottom: 24px;
   right: 24px;
@@ -18,13 +18,38 @@
   z-index: 1000;
 }
 
-.weavedb-btn:hover {
+@media (max-width: 600px) {
+  .weaveit-btn {
+    bottom: 16px;
+    right: 16px;
+    padding: 0.55rem 0.75rem;
+    font-size: 0;
+    gap: 0;
+  }
+
+  .weaveit-btn .weaveit-text {
+    display: none;
+  }
+
+  .weaveit-btn-logo {
+    height: 22px;
+  }
+}
+
+.weaveit-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   border-color: var(--hn-orange);
   color: var(--hn-orange);
 }
 
-.weavedb-logo {
-  color: inherit;
+.weaveit-btn-logo {
+  height: 20px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .weaveit-btn-logo {
+  filter: invert(1);
 }

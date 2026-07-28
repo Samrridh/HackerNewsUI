@@ -9,6 +9,108 @@
   transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
+  outline: none;
+}
+
+.story-item-focused {
+  border-color: var(--hn-orange);
+  box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.18);
+}
+
+.story-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.15rem;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.story-actions-secondary {
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.15rem;
+  flex-wrap: nowrap;
+}
+
+/* Desktop/hover devices: reveal extras on hover, beside bookmark */
+@media (hover: hover) and (pointer: fine) {
+  .story-item:hover .story-actions-secondary,
+  .story-item:focus-within .story-actions-secondary {
+    display: flex;
+  }
+}
+
+/* Touch: reveal extras when the row is focused / selected */
+@media (hover: none), (pointer: coarse) {
+  .story-item-focused .story-actions-secondary {
+    display: flex;
+  }
+}
+
+/* First item always shows all actions */
+.story-item-reveal-actions .story-actions-secondary {
+  display: flex;
+}
+
+[data-view='list'] .story-actions {
+  max-width: none;
+}
+
+.story-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  color: var(--text-tertiary);
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  touch-action: manipulation;
+}
+
+.story-action-btn:hover,
+.story-action-btn.active {
+  color: var(--hn-orange);
+  background: var(--hover-bg);
+}
+
+[data-view='list'] .story-item {
+  padding: 0.7rem 0.9rem;
+  gap: 0.65rem;
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+
+[data-view='list'] .story-title {
+  font-size: 0.95rem;
+}
+
+[data-view='list'] .story-meta {
+  margin-top: 0.1rem;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+}
+
+[data-view='list'] .story-item:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.story-content-open {
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.story-content-open:hover .story-title {
+  color: var(--hn-orange);
 }
 
 .story-item:hover {
@@ -148,7 +250,7 @@
   height: 60px;
 }
 
-/* Compact Layout Mode */
+/* Compact Layout Mode (list / centered column) */
 .layout-center .story-item {
   padding: 0.8rem 1rem;
   gap: 0.6rem;
@@ -164,4 +266,122 @@
 }
 .layout-center .story-skeleton {
   height: 48px;
+}
+
+/* Cards view: vertical card cells in the grid */
+html[data-view='cards'] .story-item,
+.app-root.view-cards .story-item {
+  padding: 1rem 1.1rem 0.9rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  flex-direction: column;
+  gap: 0.75rem;
+  height: 100%;
+  min-width: 0;
+}
+
+html[data-view='cards'] .layout-center .story-item,
+.app-root.view-cards.layout-center .story-item {
+  padding: 1rem 1.1rem 0.9rem;
+  gap: 0.75rem;
+}
+
+html[data-view='cards'] .story-rank,
+.app-root.view-cards .story-rank {
+  min-width: 0;
+  text-align: left;
+  font-size: 0.8rem;
+  padding-top: 0;
+  color: var(--hn-orange);
+}
+
+html[data-view='cards'] .story-content,
+.app-root.view-cards .story-content {
+  min-width: 0;
+  width: 100%;
+}
+
+html[data-view='cards'] .story-main,
+.app-root.view-cards .story-main {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+html[data-view='cards'] .story-title,
+.app-root.view-cards .story-title,
+html[data-view='cards'] .layout-center .story-title,
+.app-root.view-cards.layout-center .story-title {
+  font-size: 0.98rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  align-items: flex-start;
+}
+
+html[data-view='cards'] .story-meta,
+.app-root.view-cards .story-meta {
+  margin-top: 0.15rem;
+  gap: 0.3rem 0.45rem;
+  font-size: 0.78rem;
+}
+
+html[data-view='cards'] .story-actions,
+.app-root.view-cards .story-actions {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: auto;
+  max-width: none;
+  align-self: flex-end;
+  padding-top: 0;
+  border-top: none;
+  gap: 0.15rem;
+  margin-left: auto;
+}
+
+html[data-view='cards'] .story-actions-secondary,
+.app-root.view-cards .story-actions-secondary {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.15rem;
+}
+
+html[data-view='cards'] .story-action-btn,
+.app-root.view-cards .story-action-btn {
+  width: 28px;
+  height: 28px;
+}
+
+@media (max-width: 640px) {
+  .story-item {
+    gap: 0.65rem;
+    padding: 0.85rem 0.75rem;
+  }
+
+  .story-rank {
+    min-width: 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .story-title {
+    font-size: 0.95rem;
+  }
+
+  .story-meta {
+    font-size: 0.78rem;
+  }
+
+  .story-action-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  [data-view='list'] .story-actions {
+    max-width: none;
+  }
+
+  [data-view='list'] .story-item {
+    padding: 0.75rem 0.65rem;
+  }
 }

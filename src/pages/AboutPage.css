@@ -1,0 +1,72 @@
+.about-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 40rem;
+}
+
+.about-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.about-logo {
+  height: 28px;
+  width: auto;
+  margin-bottom: 0.25rem;
+}
+
+[data-theme='dark'] .about-logo {
+  filter: invert(1);
+}
+
+.about-title {
+  font-size: 1.5rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.about-lead {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.about-lead a {
+  color: var(--hn-orange);
+  font-weight: 600;
+}
+
+.about-section h2 {
+  font-size: 1rem;
+  font-weight: 650;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+
+.about-section p {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.about-section strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.about-back {
+  margin-top: 0.5rem;
+}
+
+.about-back a {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.about-back a:hover {
+  color: var(--hn-orange);
+}

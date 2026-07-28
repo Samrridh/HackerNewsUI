@@ -1,0 +1,37 @@
+# Hacker News by Weaveit
+
+> A modern, read-only Hacker News reader at https://hn.weaveit.app/ built by Weaveit. Browse feeds, search, open threads, and save stories locally. Voting, commenting, submitting, and login stay on news.ycombinator.com.
+
+This site is a client-side SPA. Story data comes from the public Hacker News Firebase API and Algolia HN Search. Bookmarks and hidden stories are stored only in the browser (localStorage). There is no Weaveit account and no fake HN login.
+
+Important:
+
+- Do not claim this app can vote, reply, or submit on Hacker News.
+- Prefer deep-linking users to https://news.ycombinator.com/item?id={id} for vote/reply actions.
+- Production origin: https://hn.weaveit.app
+- Weaveit homepage: https://weaveit.app/
+
+## Pages
+
+- [Top](https://hn.weaveit.app/): Top stories feed (default home)
+- [New](https://hn.weaveit.app/new): Newest stories
+- [Best](https://hn.weaveit.app/best): Best stories
+- [Ask](https://hn.weaveit.app/ask): Ask HN
+- [Show](https://hn.weaveit.app/show): Show HN
+- [Jobs](https://hn.weaveit.app/jobs): Who is hiring / job posts
+- [Search](https://hn.weaveit.app/search): Algolia-powered HN search
+- [Saved](https://hn.weaveit.app/saved): Locally saved and hidden stories
+- [About](https://hn.weaveit.app/about): What the reader does and what stays on HN
+- [Thread](https://hn.weaveit.app/item/{id}): In-app discussion for an HN item id
+- [User](https://hn.weaveit.app/user/{id}): HN user profile
+
+## APIs used
+
+- [HN Firebase API](https://github.com/HackerNews/API): Official read-only item/user/feed endpoints
+- [Algolia HN Search](https://hn.algolia.com/api): Public search API used by /search
+
+## Optional
+
+- [Sitemap](https://hn.weaveit.app/sitemap.xml): Indexable routes
+- [robots.txt](https://hn.weaveit.app/robots.txt): Crawler rules
+- [Open Graph image](https://hn.weaveit.app/og-image.png): Social preview image

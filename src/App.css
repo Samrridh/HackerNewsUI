@@ -4,11 +4,27 @@
   grid-template-columns: 1fr;
   gap: 2rem;
   align-items: start;
+  width: 100%;
 }
 
 .layout-center .main-layout {
   max-width: 800px;
   margin: 0 auto;
+}
+
+/* Cards need room for a 3-column grid */
+.app-root.view-cards.layout-center .main-layout {
+  max-width: 1200px;
+}
+
+.layout-left .main-layout.container {
+  margin: 0 auto;
+  max-width: 1400px;
+  padding: 0 4rem;
+}
+
+.app-root.view-cards.layout-left .main-layout.container {
+  max-width: 1480px;
 }
 
 @media (min-width: 1000px) {
@@ -17,14 +33,20 @@
   }
 }
 
-.layout-left .container {
-  margin: 0;
-  max-width: 1400px;
-  padding: 0 4rem;
+@media (max-width: 999px) {
+  .layout-left .main-layout.container {
+    padding: 0 1rem;
+  }
 }
 
-@media (max-width: 1000px) {
-  .layout-left .container {
-    padding: 0 1rem;
+@media (max-width: 640px) {
+  .layout-center .main-layout,
+  .app-root.view-cards.layout-center .main-layout {
+    max-width: 100%;
+  }
+
+  .layout-left .main-layout.container,
+  .app-root.view-cards.layout-left .main-layout.container {
+    padding: 0 0.75rem;
   }
 }

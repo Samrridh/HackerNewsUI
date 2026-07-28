@@ -1,39 +1,100 @@
 import React, { useState } from 'react';
-import { Sun, Moon, AlignLeft, AlignCenter, Menu, X } from 'lucide-react';
+import { NavLink, Link } from 'react-router-dom';
+import {
+  Sun,
+  Moon,
+  AlignLeft,
+  AlignCenter,
+  Menu,
+  X,
+  List,
+  LayoutGrid,
+} from 'lucide-react';
+import { useLibrary } from '../context/LibraryContext';
 import './Header.css';
+
+const NAV_ITEMS = [
+  { to: '/', label: 'Top', end: true },
+  { to: '/new', label: 'New' },
+  { to: '/best', label: 'Best' },
+  { to: '/show', label: 'Show' },
+  { to: '/ask', label: 'Ask' },
+  { to: '/jobs', label: 'Jobs' },
+  { to: '/saved', label: 'Saved' },
+];
 
 const Header = ({ theme, toggleTheme, layout, toggleLayout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { viewMode, toggleViewMode, bookmarks } = useLibrary();
+
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <header className="header">
       <div className="header-container">
-        <div className="logo-group">
-          <div className="logo-icon">
-            Y
-          </div>
+        <Link to="/" className="logo-group" onClick={closeMenu}>
+          <div className="logo-icon">Y</div>
           <h1 className="header-title">
-            Hacker News <span className="powered-by">by WeaveDB</span>
+            Hacker News <span className="powered-by">by Weaveit</span>
+            <img
+              src="/weaveit-logo.png"
+              alt="Weaveit"
+              className="weaveit-logo header-weaveit-logo"
+            />
           </h1>
-        </div>
+        </Link>
 
-        <button className="mobile-menu-btn icon-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <button
+          type="button"
+          className="mobile-menu-btn icon-btn"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-expanded={isMenuOpen}
+          aria-label="Toggle navigation"
+        >
           {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
 
         <nav className={`header-nav ${isMenuOpen ? 'mobile-open' : ''}`}>
-          <a href="#" className="nav-link active">Top</a>
-          <a href="#" className="nav-link">New</a>
-          <a href="#" className="nav-link">Show</a>
-          <a href="#" className="nav-link">Ask</a>
-          <a href="#" className="nav-link">Jobs</a>
+          {NAV_ITEMS.map(({ to, label, end }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={end}
+              className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
+              onClick={closeMenu}
+            >
+              {label}
+              {label === 'Saved' && bookmarks.length > 0 ? (
+                <span className="nav-badge">{bookmarks.length}</span>
+              ) : null}
+            </NavLink>
+          ))}
         </nav>
-        
+
         <div className="header-actions">
-          <button className="icon-btn" onClick={toggleLayout} title={`Switch to ${layout === 'center' ? 'left-aligned' : 'centered'} layout`}>
+          <button
+            type="button"
+            className="icon-btn"
+            onClick={toggleViewMode}
+            title={`Switch to ${viewMode === 'list' ? 'cards' : 'list'} view`}
+            aria-label={`Switch to ${viewMode === 'list' ? 'cards' : 'list'} view`}
+          >
+            {viewMode === 'list' ? <LayoutGrid size={18} /> : <List size={18} />}
+          </button>
+          <button
+            type="button"
+            className="icon-btn"
+            onClick={toggleLayout}
+            title={`Switch to ${layout === 'center' ? 'left-aligned' : 'centered'} layout`}
+          >
             {layout === 'center' ? <AlignLeft size={18} /> : <AlignCenter size={18} />}
           </button>
-          <button className="icon-btn" onClick={toggleTheme} title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}>
+          <button
+            type="button"
+            className="icon-btn"
+            onClick={toggleTheme}
+            title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+          >
             {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
           </button>
         </div>

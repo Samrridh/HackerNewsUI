@@ -3,9 +3,104 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" href="/weaveit-logo.png" />
+  <link rel="apple-touch-icon" href="/weaveit-logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HackerNews UI by Weave AI</title>
+  <meta
+    name="description"
+    content="A modern Hacker News reader by Weaveit — Top, New, Ask, Show, Jobs, Algolia search, in-app comments, dark mode, and local bookmarks."
+  />
+  <meta name="author" content="Weaveit" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#ff6600" />
+  <meta name="application-name" content="Hacker News by Weaveit" />
+  <link rel="canonical" href="https://hn.weaveit.app/" />
+
+  <!-- Critical first-paint styles (avoids FOUC while main CSS loads async) -->
+  <style>
+    :root {
+      --hn-orange: #ff6600;
+      --bg-color: #fafafa;
+      --surface-color: #ffffff;
+      --text-primary: #111111;
+      --text-secondary: #777777;
+      --border-color: #eaeaea;
+      --header-bg: rgba(255, 255, 255, 0.85);
+      --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #121212;
+        --surface-color: #1e1e1e;
+        --text-primary: #ededed;
+        --text-secondary: #a1a1aa;
+        --border-color: #2d2d2d;
+        --header-bg: rgba(30, 30, 30, 0.85);
+      }
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    #root { min-height: 100vh; }
+  </style>
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Hacker News by Weaveit" />
+  <meta property="og:title" content="Hacker News by Weaveit" />
+  <meta
+    property="og:description"
+    content="Read Hacker News with a cleaner UI, dark mode, search, comment threads, and local bookmarks."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="https://hn.weaveit.app/" />
+  <meta property="og:image" content="https://hn.weaveit.app/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:image:alt" content="Hacker News by Weaveit" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hacker News by Weaveit" />
+  <meta
+    name="twitter:description"
+    content="Read Hacker News with a cleaner UI, dark mode, search, comment threads, and local bookmarks."
+  />
+  <meta name="twitter:image" content="https://hn.weaveit.app/og-image.png" />
+  <meta name="twitter:image:alt" content="Hacker News by Weaveit" />
+
+  <title>Hacker News by Weaveit</title>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Hacker News by Weaveit",
+      "applicationCategory": "NewsApplication",
+      "operatingSystem": "Any",
+      "description": "A modern Hacker News reader by Weaveit with feeds, search, comments, and bookmarks.",
+      "url": "https://hn.weaveit.app/",
+      "image": "https://hn.weaveit.app/og-image.png",
+      "creator": {
+        "@type": "Organization",
+        "name": "Weaveit",
+        "url": "https://weaveit.app/"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+  </script>
 </head>
 
 <body>
