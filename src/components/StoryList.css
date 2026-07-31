@@ -55,11 +55,21 @@
   }
 }
 
+@media (max-width: 999px) {
+  /* Force list layout on tablet/mobile even if cards is stored */
+  [data-view='cards'] .stories-list,
+  .app-root.view-cards .stories-list {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+    gap: 0.45rem;
+  }
+}
+
 @media (max-width: 640px) {
   [data-view='cards'] .stories-list,
   .app-root.view-cards .stories-list {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
+    gap: 0.45rem;
   }
 }
 

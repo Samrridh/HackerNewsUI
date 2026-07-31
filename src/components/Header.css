@@ -142,6 +142,12 @@
   display: none;
 }
 
+@media (max-width: 999px) {
+  .desktop-only-btn {
+    display: none;
+  }
+}
+
 @media (max-width: 600px) {
   .mobile-menu-btn {
     display: flex;
@@ -150,6 +156,19 @@
   }
   .header-actions {
     margin-left: 0;
+  }
+  .header-container {
+    padding: 0.75rem 0.9rem;
+    gap: 0.35rem;
+  }
+  .header-title {
+    font-size: 1rem;
+  }
+  .powered-by {
+    display: none;
+  }
+  .header-weaveit-logo {
+    height: 18px;
   }
   .header-nav {
     display: none;

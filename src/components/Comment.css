@@ -152,3 +152,30 @@
     margin-left: calc(var(--depth) * 1.1rem);
   }
 }
+
+@media (max-width: 767px) {
+  .comment {
+    /* Cap nesting indent so deep threads stay on-screen */
+    margin-left: calc(min(var(--depth), 4) * 0.55rem);
+    padding: 0.65rem 0 0.65rem 0.55rem;
+  }
+
+  .comment-collapsed {
+    margin-left: calc(min(var(--depth), 4) * 0.55rem);
+    padding-left: 0.55rem;
+  }
+
+  .comment-body {
+    font-size: 0.88rem;
+  }
+
+  .comment-header {
+    font-size: 0.75rem;
+    gap: 0.3rem;
+  }
+
+  .comment-load-replies {
+    min-height: 40px;
+    padding: 0.45rem 0.7rem;
+  }
+}

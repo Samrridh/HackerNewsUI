@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   MessageSquare,
@@ -10,6 +10,7 @@ import {
   Link2,
   Newspaper,
   Check,
+  MoreVertical,
 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { fetchStory } from '../api';
@@ -32,6 +33,8 @@ const StoryItem = ({
   const { isBookmarked, toggleBookmark, hideStory } = useLibrary();
   const [story, setStory] = useState(() => getCachedStory(storyId));
   const [copied, setCopied] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const actionsRef = useRef(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -62,6 +65,33 @@ const StoryItem = ({
       cancelled = true;
     };
   }, [storyId, upsertStory]);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+
+    let onPointerDown;
+    let onKeyDown;
+
+    // Defer so the opening tap/click does not immediately count as an outside press.
+    const timer = window.setTimeout(() => {
+      onPointerDown = (event) => {
+        if (actionsRef.current && !actionsRef.current.contains(event.target)) {
+          setMenuOpen(false);
+        }
+      };
+      onKeyDown = (event) => {
+        if (event.key === 'Escape') setMenuOpen(false);
+      };
+      document.addEventListener('pointerdown', onPointerDown);
+      document.addEventListener('keydown', onKeyDown);
+    }, 0);
+
+    return () => {
+      window.clearTimeout(timer);
+      if (onPointerDown) document.removeEventListener('pointerdown', onPointerDown);
+      if (onKeyDown) document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [menuOpen]);
 
   if (story === undefined) {
     return (
@@ -115,7 +145,7 @@ const StoryItem = ({
     <article
       className={`story-item animate-fade-in${focused ? ' story-item-focused' : ''}${
         revealActions ? ' story-item-reveal-actions' : ''
-      }`}
+      }${menuOpen ? ' story-item-menu-open' : ''}`}
       data-story-id={story.id}
       tabIndex={-1}
       onClick={onFocus}
@@ -221,7 +251,7 @@ const StoryItem = ({
         </div>
       </div>
 
-      <div className="story-actions" onClick={stop}>
+      <div className="story-actions" ref={actionsRef} onClick={stop}>
         <button
           type="button"
           className={`story-action-btn story-action-bookmark${bookmarked ? ' active' : ''}`}
@@ -235,15 +265,40 @@ const StoryItem = ({
           <Bookmark size={16} fill={bookmarked ? 'currentColor' : 'none'} />
         </button>
 
-        <div className="story-actions-secondary">
+        <button
+          type="button"
+          className={`story-action-btn story-actions-menu-btn${menuOpen ? ' active' : ''}`}
+          title="More actions"
+          aria-label="More actions"
+          aria-expanded={menuOpen}
+          aria-haspopup="menu"
+          onPointerDown={(e) => {
+            // Prevent the document outside-dismiss listener from racing the open tap.
+            e.stopPropagation();
+          }}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setMenuOpen((open) => !open);
+          }}
+        >
+          <MoreVertical size={16} />
+        </button>
+
+        <div className="story-actions-secondary" role="menu">
           <button
             type="button"
             className={`story-action-btn${copied ? ' active' : ''}`}
             title={copied ? 'Copied' : 'Copy link'}
             aria-label={copied ? 'Copied' : 'Copy link'}
-            onClick={handleCopyLink}
+            role="menuitem"
+            onClick={(e) => {
+              handleCopyLink(e);
+              setMenuOpen(false);
+            }}
           >
             {copied ? <Check size={16} /> : <Link2 size={16} />}
+            <span className="story-action-label">Copy link</span>
           </button>
 
           {hasExternalUrl && (
@@ -254,9 +309,14 @@ const StoryItem = ({
               className="story-action-btn"
               title="Open article"
               aria-label="Open article"
-              onClick={stop}
+              role="menuitem"
+              onClick={(e) => {
+                stop(e);
+                setMenuOpen(false);
+              }}
             >
               <Newspaper size={16} />
+              <span className="story-action-label">Open article</span>
             </a>
           )}
 
@@ -267,9 +327,14 @@ const StoryItem = ({
             className="story-action-btn"
             title="Open on Hacker News (vote / reply)"
             aria-label="Open on Hacker News"
-            onClick={stop}
+            role="menuitem"
+            onClick={(e) => {
+              stop(e);
+              setMenuOpen(false);
+            }}
           >
             <ExternalLink size={16} />
+            <span className="story-action-label">Open on HN</span>
           </a>
 
           <button
@@ -277,12 +342,15 @@ const StoryItem = ({
             className="story-action-btn"
             title="Hide story"
             aria-label="Hide story"
+            role="menuitem"
             onClick={(e) => {
               e.stopPropagation();
               hideStory(story.id);
+              setMenuOpen(false);
             }}
           >
             <EyeOff size={16} />
+            <span className="story-action-label">Hide</span>
           </button>
         </div>
       </div>

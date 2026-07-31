@@ -31,6 +31,9 @@
   
   --header-bg: rgba(255, 255, 255, 0.85);
   --font-sans: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --bg-glow-1: rgba(255, 102, 0, 0.22);
+  --bg-glow-2: rgba(255, 140, 40, 0.14);
+  --bg-glow-3: rgba(255, 102, 0, 0.1);
 }
 
 [data-theme='dark'] {
@@ -44,6 +47,9 @@
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
   --header-bg: rgba(30, 30, 30, 0.85);
+  --bg-glow-1: rgba(255, 102, 0, 0.18);
+  --bg-glow-2: rgba(255, 120, 20, 0.12);
+  --bg-glow-3: rgba(255, 102, 0, 0.08);
 }
 
 * {
@@ -59,6 +65,23 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 12% -5%, var(--bg-glow-1), transparent 60%),
+    radial-gradient(ellipse 55% 45% at 92% 8%, var(--bg-glow-2), transparent 55%),
+    radial-gradient(ellipse 60% 50% at 50% 105%, var(--bg-glow-3), transparent 55%);
+  filter: blur(48px);
+  transform: translateZ(0);
 }
 
 a {

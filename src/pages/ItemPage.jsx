@@ -126,8 +126,10 @@ const ItemPage = () => {
           className={`item-focus-btn${focusMode ? ' active' : ''}`}
           onClick={() => setFocusMode(!focusMode)}
           title={focusMode ? 'Exit focus mode' : 'Focus mode'}
+          aria-label={focusMode ? 'Exit focus mode' : 'Focus mode'}
         >
-          <Focus size={16} /> {focusMode ? 'Exit focus' : 'Focus'}
+          <Focus size={16} />
+          <span className="item-focus-label">{focusMode ? 'Exit focus' : 'Focus'}</span>
         </button>
       </div>
 

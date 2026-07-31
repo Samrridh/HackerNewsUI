@@ -6,10 +6,15 @@
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   position: relative;
   overflow: hidden;
   outline: none;
+}
+
+.story-item-menu-open {
+  overflow: visible;
+  z-index: 30;
 }
 
 .story-item-focused {
@@ -25,6 +30,7 @@
   gap: 0.15rem;
   flex-shrink: 0;
   align-self: flex-start;
+  position: relative;
 }
 
 .story-actions-secondary {
@@ -35,24 +41,75 @@
   flex-wrap: nowrap;
 }
 
-/* Desktop/hover devices: reveal extras on hover, beside bookmark */
-@media (hover: hover) and (pointer: fine) {
+.story-actions-menu-btn {
+  display: none;
+}
+
+.story-action-label {
+  display: none;
+}
+
+/* Desktop / laptop: reveal extras on hover beside bookmark (no ⋮ menu) */
+@media (min-width: 768px) {
   .story-item:hover .story-actions-secondary,
-  .story-item:focus-within .story-actions-secondary {
+  .story-item:focus-within .story-actions-secondary,
+  .story-item-reveal-actions .story-actions-secondary {
     display: flex;
+  }
+
+  .story-actions-menu-btn {
+    display: none !important;
   }
 }
 
-/* Touch: reveal extras when the row is focused / selected */
-@media (hover: none), (pointer: coarse) {
-  .story-item-focused .story-actions-secondary {
-    display: flex;
+/* Phone / narrow screens: ⋮ overflow menu instead of hover actions */
+@media (max-width: 767px) {
+  .story-item {
+    overflow: visible;
   }
-}
 
-/* First item always shows all actions */
-.story-item-reveal-actions .story-actions-secondary {
-  display: flex;
+  .story-actions-menu-btn {
+    display: inline-flex;
+  }
+
+  /* Keep secondary actions hidden unless the ⋮ menu is open.
+     :focus-within would otherwise win over .story-item-menu-open. */
+  .story-item .story-actions-secondary {
+    display: none;
+  }
+
+  .story-item.story-item-menu-open .story-actions-secondary {
+    display: flex;
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    right: 0;
+    z-index: 40;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.15rem;
+    min-width: 10.5rem;
+    padding: 0.35rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    background: var(--surface-color);
+    box-shadow: var(--shadow-md);
+  }
+
+  .story-item.story-item-menu-open .story-actions-secondary .story-action-btn {
+    width: 100%;
+    height: auto;
+    min-height: 40px;
+    justify-content: flex-start;
+    gap: 0.55rem;
+    padding: 0.45rem 0.6rem;
+  }
+
+  .story-item.story-item-menu-open .story-action-label {
+    display: inline;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
 }
 
 [data-view='list'] .story-actions {
@@ -383,5 +440,53 @@ html[data-view='cards'] .story-action-btn,
 
   [data-view='list'] .story-item {
     padding: 0.75rem 0.65rem;
+  }
+}
+
+/* Force list-style story cards on tablet/mobile */
+@media (max-width: 999px) {
+  html[data-view='cards'] .story-item,
+  .app-root.view-cards .story-item {
+    padding: 0.7rem 0.9rem;
+    gap: 0.65rem;
+    border-radius: var(--radius-md);
+    box-shadow: none;
+    flex-direction: row;
+    height: auto;
+  }
+
+  html[data-view='cards'] .story-rank,
+  .app-root.view-cards .story-rank {
+    min-width: 2rem;
+    text-align: right;
+    font-size: 0.9rem;
+    padding-top: 2px;
+    color: var(--text-tertiary);
+  }
+
+  html[data-view='cards'] .story-main,
+  .app-root.view-cards .story-main {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  html[data-view='cards'] .story-title,
+  .app-root.view-cards .story-title,
+  html[data-view='cards'] .layout-center .story-title,
+  .app-root.view-cards.layout-center .story-title {
+    font-size: 0.95rem;
+    display: inline-flex;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: unset;
+    overflow: visible;
+    align-items: center;
+  }
+
+  html[data-view='cards'] .story-actions,
+  .app-root.view-cards .story-actions {
+    align-self: flex-start;
+    margin-left: 0;
   }
 }

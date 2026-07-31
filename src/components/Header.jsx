@@ -3,8 +3,8 @@ import { NavLink, Link } from 'react-router-dom';
 import {
   Sun,
   Moon,
-  AlignLeft,
-  AlignCenter,
+  PanelLeftOpen,
+  PanelLeftClose,
   Menu,
   X,
   List,
@@ -28,6 +28,7 @@ const Header = ({ theme, toggleTheme, layout, toggleLayout }) => {
   const { viewMode, toggleViewMode, bookmarks } = useLibrary();
 
   const closeMenu = () => setIsMenuOpen(false);
+  const sidebarOpen = layout === 'left';
 
   return (
     <header className="header">
@@ -74,7 +75,7 @@ const Header = ({ theme, toggleTheme, layout, toggleLayout }) => {
         <div className="header-actions">
           <button
             type="button"
-            className="icon-btn"
+            className="icon-btn desktop-only-btn"
             onClick={toggleViewMode}
             title={`Switch to ${viewMode === 'list' ? 'cards' : 'list'} view`}
             aria-label={`Switch to ${viewMode === 'list' ? 'cards' : 'list'} view`}
@@ -83,17 +84,20 @@ const Header = ({ theme, toggleTheme, layout, toggleLayout }) => {
           </button>
           <button
             type="button"
-            className="icon-btn"
+            className="icon-btn desktop-only-btn"
             onClick={toggleLayout}
-            title={`Switch to ${layout === 'center' ? 'left-aligned' : 'centered'} layout`}
+            title={sidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+            aria-label={sidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+            aria-pressed={sidebarOpen}
           >
-            {layout === 'center' ? <AlignLeft size={18} /> : <AlignCenter size={18} />}
+            {sidebarOpen ? <PanelLeftClose size={18} /> : <PanelLeftOpen size={18} />}
           </button>
           <button
             type="button"
             className="icon-btn"
             onClick={toggleTheme}
             title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
           >
             {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
           </button>
